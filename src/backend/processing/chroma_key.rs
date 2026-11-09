@@ -1,6 +1,7 @@
 use rustychroma;
 use image::{RgbImage, RgbaImage};
 
+/// `ChromaSettings` struct used to setup the `ChromaKey`
 #[derive(Clone)]
 pub struct ChromaSettings {
     pub key_color: [u8; 3],
@@ -18,15 +19,18 @@ impl Default for ChromaSettings {
     }
 }
 
+/// The main `ChromaKey` struct, used to start chroma key processes
 pub struct ChromaKey {
     settings: ChromaSettings,
 }
 
 impl ChromaKey {
+    /// Create a new `ChromaKey` instance
     pub fn new(settings: ChromaSettings) -> Self {
         Self { settings }
     }
 
+    /// Processes an image. Use the .Image in a `Frame` struct
     pub fn process(&self, input: &RgbImage) -> RgbaImage {
         // Convert RGB to RGBA.
         let mut output =
@@ -46,6 +50,7 @@ impl ChromaKey {
         output
     }
 
+    /// Update the `ChromaSettings` of the `ChromaKey` instance on the fly
     pub fn update_settings(&mut self, settings: ChromaSettings) {
         self.settings = settings;
     }
