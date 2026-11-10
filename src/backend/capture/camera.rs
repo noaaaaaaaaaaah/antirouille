@@ -241,7 +241,7 @@ impl Drop for VideoCapture {
 
 impl Capture for VideoCapture {
     fn capture(&mut self) -> Result<Frame>{
-                if !self.started {
+        if !self.started {
             return Err(anyhow!("Camera is not started"));
         }
 
